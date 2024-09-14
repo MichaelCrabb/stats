@@ -4,7 +4,9 @@
 #' @export
 #'
 #' @examples
-mygetwd <- function() {
+#' \dontrun{mygetwd()}
+#'
+bettergetwd <- function() {
   address <- getwd()
   gsub("/", "//", address)
 }
