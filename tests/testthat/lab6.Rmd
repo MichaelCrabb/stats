@@ -1,0 +1,271 @@
+---
+title: "lab6"
+author: "Michael Crabb"
+date: "2024-10-03"
+output: 
+  html_document:
+    toc: yes
+    toc_float: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Task 1
+
+```{r}
+getwd()
+```
+
+# Task 2
+
+```{r}
+layout(matrix(1:4, nr = 2, nc = 2))
+layout.show(4)
+```
+
+```{r}
+curve(dnorm(x, mean = 10, sd = 4), xlim = c(10 - 3 * 4, 10 + 3 * 4))
+curve(dnorm(x, mean = 10, sd = 2), xlim = c(10 - 3 * 2, 10 + 3 * 2))
+curve(dnorm(x, mean = 5, sd = 10), xlim = c(5 - 3 * 10, 5 + 3 * 10))
+curve(dnorm(x, mean = 5, sd = 0.5), xlim = c(5 - 3 * 0.5, 5 + 3 * 0.5))
+```
+
+```{r}
+curve(dnorm(x, mean = 0, sd = 1), xlim = c(-3, 3))
+
+xcurve1 = seq(2, 5, length = 1000)
+ycurve1 = dnorm(xcurve1, mean = 0, sd = 1)
+
+polygon(c(2, xcurve1, 5), c(0, ycurve1, 0), col = "Pink")
+area = pnorm(5, mean = 0, sd = 1) - pnorm(2, mean = 0, sd = 1)
+area = round(area, 4)
+
+text(x = 2.15, y = 0.025, paste("Area = ", area, sep = ""))
+```
+
+```{r}
+curve(dnorm(x, mean = 4, sd = 2), xlim = c(-2, 10))
+
+xcurve = seq(1, 5, length = 1000)
+
+ycurve = dnorm(xcurve, mean = 4, sd = 2)
+
+polygon(c(1, xcurve, 5), c(0, ycurve, 0), col = "Blue")
+
+prob2 = pnorm(5, mean = 4, sd = 2) - pnorm(1, mean = 4, sd = 2)
+prob2 = round(prob2, 4)
+
+text(x = 3.26393, y = 0.094131, paste("Area = ", prob2, sep = ""))
+```
+
+```{r}
+curve(dnorm(x, mean = 10, sd = 4), xlim = c(-2, 22))
+
+xcurve3 = seq(-5, 10, length = 1000)
+ycurve3 = dnorm(xcurve3, mean = 10, sd = 4)
+
+polygon(c(-5, xcurve3, 10), c(0, ycurve3, 0), col = "Purple")
+
+area3 = pnorm(10, mean = 10, sd = 4)
+area3 = round(area3, 4)
+text(x = 7.0, y = 0.037, paste("Area = ", area3, sep = ""))
+```
+
+```{r}
+curve(dnorm(x, mean = -2, sd = 0.5), xlim = c(-4, 0))
+
+xcurve4 = seq(-3, -2, length = 1000)
+ycurve4 = dnorm(xcurve4, mean = -2, sd = 0.5)
+
+polygon(c(-3, xcurve4, -2), c(0, ycurve4, 0), col = "Cyan")
+
+area4 = pnorm(-2, mean = -2, sd = 0.5) - pnorm(-3, mean = -2, sd = 0.5)
+area4 = round(area4, 4)
+
+text(x = -2.4, y = 0.3, paste("Area = ", area4, sep = ""))
+```
+
+# Task 3
+
+```{r}
+curve(dgamma(x, shape = 1, scale = 1), xlim = c(0, 10), ylim = c(0, 1), col = "Maroon", lwd = 2, ylab = "Gamma Density", main = "beta = 1")
+text(x = 1.2, y = 0.8, paste("alpha = ", 1))
+
+curve(dgamma(x, shape = 3, scale = 1), xlim = c(0, 10), ylim = c(0, 1), col = "Green2", add = TRUE, lwd = 2)
+text(x = 2.3, y = 0.35, paste("alpha = ", 3))
+
+curve(dgamma(x, shape = 5, scale = 1), xlim = c(0, 10), ylim = c(0, 1), col = "Orange", add = TRUE, lwd = 2)
+text(x = 4.5, y = 0.25, paste("alpha = ", 5))
+```
+
+```{r}
+curve(dgamma(x, shape = 3, scale = 2), xlim = c(0, 10), ylim = c(0, 0.3), col = "Black", lwd = 2, ylab = "Gamma Density", xlab = "Y", main = "Gamma Distribution; Shape = 3; Scale = 2")
+
+xgam1 = seq(2, 5, length = 1000)
+ygam1 = dgamma(xgam1, shape = 3, scale = 2)
+polygon(c(2, xgam1, 5), c(0, ygam1, 0), col = "Dark Slate Gray 2")
+
+gprob1 = pgamma(5, shape = 3, scale = 2) - pgamma(2, shape = 3, scale = 2)
+gprob1 = round(gprob1, 4)
+text(x = 3.2, y = 0.17, paste("P(2 < Y < 5) = ", gprob1, sep = ""))
+```
+
+```{r}
+curve(dgamma(x, shape = 6, scale = 3), xlim = c(0, 30), ylim = c(0, 0.06), lwd = 2, ylab = "Gamma Density", xlab = "Y", main = "Shape6; Scale = 3")
+xgam2 = seq(1, 4, length = 1000)
+ygam2 = dgamma(xgam2, shape = 6, scale = 3)
+polygon(c(1, xgam2, 4), c(0, ygam2, 0), col = "Aquamarine")
+
+gprob2 = pgamma(4, shape = 6, scale = 3) - pgamma(1, shape = 6, scale = 3)
+gprob2 = round(gprob2, 4)
+text(x = 2.3, y = 0.01, paste("P = ", gprob2, sep = ""))
+```
+
+```{r}
+curve(dgamma(x, shape = 2, scale = 4), xlim = c(0, 30), ylim = c(0, 0.1), lwd = 2, ylab = "Gamma Density", xlab = "Y", main = "Shape = 2; Scale = 4")
+
+xgam3 = seq(3, 6, length = 1000)
+ygam3 = dgamma(xgam3, shape = 2, scale = 4)
+polygon(c(3, xgam3, 6), c(0, ygam3, 0), col = "Light Blue")
+
+gprob3 = pgamma(6, shape = 2, scale = 4) - pgamma(3, shape = 2, scale = 4)
+gprob3 = round(gprob3, 4)
+text(x = 10, y = 0.09, paste("Area = ", gprob3, sep = ""))
+```
+
+# Task 4
+
+```{r}
+layout(matrix(1:4, nr = 2, nc = 2))
+curve(dchisq(x, df = 1), xlim = c(0, 10), ylim = c(0, 1.5), lwd = 2, xlab = "Y", ylab = "Chi-Square Density", col = "Green", main = "Degrees of Freedom: 1")
+curve(dchisq(x, df = 2), xlim = c(0, 15), ylim = c(0, 0.75), lwd = 2, xlab = "Y", ylab = "Chi-Square Density", col = "Plum1", main = "Degrees of Freedom: 2")
+curve(dchisq(x, df = 4), xlim = c(0, 10), ylim = c(0, 0.5), lwd = 2, xlab = "Y", ylab = "Chi-Square Density", col = "Black", main = "Degrees of Freedom: 4")
+curve(dchisq(x, df = 20), xlim = c(0, 50), ylim = c(0, 0.075), lwd = 2, xlab = "Y", ylab = "Chi-Square Density", col = "Violet", main = "Degrees of Freedom: 20")
+```
+
+```{r}
+curve(dchisq(x, df = 2), xlim = c(0, 10), ylim = c(0, 0.75), lwd = 2, xlab = "Y", ylab = "Chi-Square Density", col = "Slate Grey", main = "Degrees of Freedom: 2")
+xchi1 = seq(2, 4, length = 1000)
+ychi1 = dchisq(xchi1, df = 2)
+polygon(c(2, xchi1, 4), c(0, ychi1, 0), col = "Cornsilk")
+
+cprob1 = round(pchisq(4, df = 2) - pchisq(2, df = 2), 4)
+text(x = 3.3, y = 0.25, paste("Area = ", cprob1, seq = ""))
+```
+
+```{r}
+curve(dchisq(x, df = 3), xlim = c(0, 10), ylim = c(0, 0.3), lwd = 2, xlab = "Y", ylab = "Chi-Square Density", col = "Slate Gray", main = "Degrees of Freedom: 3")
+xchi2 = seq(3, 5, length = 1000)
+ychi2 = dchisq(xchi2, df = 3)
+polygon(c(3, xchi2, 5), c(0, ychi2, 0), col = "Cyan3")
+
+cprob2 = round(pchisq(5, df = 3) - pchisq(3, df = 3), 4)
+text(x = 5, y = 0.15, paste("Area = ", cprob2, seq = ""))
+```
+
+```{r}
+curve(dchisq(x, df = 20), xlim = c(0, 35), ylim = c(0, 0.07), lwd = 2, xlab = "Y", ylab = "Chi-Square Density", col = "Slate Gray", main = "Degrees of Freedom: 20")
+xchi3 = seq(10, 21, length = 1000)
+ychi3 = dchisq(xchi3, df = 20)
+polygon(c(10, xchi3, 21), c(0, ychi3, 0), col = "Violet")
+
+cprob3 = round(pchisq(21, df = 20) - pchisq(10, df = 20), 4)
+text(x = 17, y = 0.04, paste("Area = ", cprob3, seq = ""))
+```
+
+# Task 5
+
+```{r}
+layout(matrix(1:4, nr = 2, nc = 2))
+curve(dweibull(x, shape = 1, scale = 1), xlim = c(0, 10), ylim = c(0, 1), col = "Maroon", lwd = 2, ylab = "Weibull Density", main = "Shape = 1, Scale = 1")
+curve(dweibull(x, shape = 5, scale = 1), xlim = c(0, 10), ylim = c(0, 2), col = "Green2", lwd = 2, ylab = "Weibull Density", main = "Shape = 5, Scale = 1")
+curve(dweibull(x, shape = 5, scale = 3), xlim = c(0, 10), ylim = c(0, 1), col = "Orange", lwd = 2, ylab = "Weibull Density", main = "Shape = 5, Scale = 3")
+curve(dweibull(x, shape = 10, scale = 3), xlim = c(0, 10), ylim = c(0, 1.5), col = "Pink", lwd = 2, ylab = "Weibull Density", main = "Shape = 10, Scale = 3")
+```
+
+```{r}
+curve(dweibull(x, shape = 3, scale = 2), xlim = c(0, 5), ylim = c(0, 0.75), col = "Black", lwd = 2, ylab = "Weibull Density", xlab = "Y", main = "Shape = 3, Scale = 2")
+xwb1 = seq(2, 5, length = 1000)
+ywb1 = dweibull(xwb1, shape = 3, scale = 2)
+polygon(c(2, xwb1, 5), c(0, ywb1, 0), col = "Red")
+wprob = pweibull(5, shape = 3, scale = 2) - pweibull(2, shape = 3, scale = 2)
+wprob = round(wprob, 4)
+text(x = 3.3, y = 0.5, paste("P(2 < Y < 5) = ", wprob, sep = ""))
+```
+
+```{r}
+curve(dweibull(x, shape = 6, scale = 3), xlim = c(0, 5), ylim = c(0, 1), col = "Black", lwd = 2, ylab = "Weibull Density", xlab = "Y", main = "Shape = 6, Scale = 3")
+xwb2 = seq(1, 4, length = 1000)
+ywb2 = dweibull(xwb2, shape = 6, scale = 3)
+polygon(c(1, xwb2, 4), c(0, ywb2, 0), col = "Violet")
+wprob2 = pweibull(4, shape = 6, scale = 3) - pweibull(1, shape = 6, scale = 3)
+wprob2 = round(wprob2, 4)
+text(x = 2.85, y = 0.4, paste("Area = ", wprob2, sep = ""))
+```
+
+```{r}
+curve(dweibull(x, shape = 2, scale = 4), xlim = c(0, 10), ylim = c(0, 0.3), col = "Black", lwd = 2, ylab = "Weibull Density", xlab = "Y", main = "Shape = 2, Scale = 4")
+xwb3 = seq(3, 6, length = 1000)
+ywb3 = dweibull(xwb3, shape = 2, scale = 4)
+polygon(c(3, xwb3, 6), c(0, ywb3, 0), col = "LightBlue2")
+wprob3 = pweibull(6, shape = 2, scale = 4) - pweibull(3, shape = 2, scale = 4)
+wprob3 = round(wprob3, 4)
+text(x = 4.2, y = 0.1, paste("Area = ", wprob3, sep = ""))
+```
+
+# Task 6
+
+```{r}
+layout(matrix(1:4, nr = 2, nc = 2))
+curve(dbeta(x, shape1 = 5, shape2 = 2), xlim = c(0, 1), col = "Red", lwd = 2, ylab = "Beta Density", xlab = "Y", main = "a = 5, b = 2")
+curve(dbeta(x, shape1 = 6, shape2 = 3), xlim = c(0, 1), col = "Green", lwd = 2, ylab = "Beta Density", xlab = "Y", main = "a = 6, b = 3")
+curve(dbeta(x, shape1 = 2, shape2 = 4), xlim = c(0, 1), col = "Blue", lwd = 2, ylab = "Beta Density", xlab = "Y", main = "a = 2, b = 4")
+curve(dbeta(x, shape1 = 2, shape2 = 5), xlim = c(0, 1), col = "Orange", lwd = 2, ylab = "Beta Density", xlab = "Y", main = "a = 2, b = 5")
+```
+
+```{r}
+curve(dbeta(x, shape1 = 3, shape2 = 2), xlim = c(0, 1), col = "Dark Grey", lwd = 2, ylab = "Beta Density", xlab = "Y", main = "Shape1 = 3, Shape2 = 2")
+
+xcurve = seq(0, 0.5, length = 1000)
+ycurve = dbeta(xcurve, shape1 = 3, shape2 = 2)
+polygon(c(0, xcurve, 0.5), c(0, ycurve, 0), col = "Orchid")
+
+prob = pbeta(0.5, shape1 = 3, shape2 = 2) - pbeta(0, shape1 = 3, shape2 = 2)
+prob = round(prob, 4)
+text(x = 0.2, y = 1.1, paste("Area1 = ", prob, sep = ""))
+```
+
+```{r}
+curve(dbeta(x, shape1 = 6, shape2 = 3), xlim = c(0, 1), col = "Gray", lwd = 2, ylab = "Beta Density", xlab = "Y", main = "Shape1 = 6, Shape2 = 3")
+
+xcurve = seq(0, 0.5, length = 1000)
+ycurve = dbeta(xcurve, shape1 = 6, shape2 = 3)
+polygon(c(0, xcurve, 0.5), c(0, ycurve, 0), col = "Orange")
+
+prob = pbeta(0.5, shape1 = 6, shape2 = 3) - pbeta(0, shape1 = 6, shape2 = 3)
+prob = round(prob, 4)
+text(x = 0.25, y = 1, paste("Area2 = ", prob, sep = ""))
+```
+
+```{r}
+curve(dbeta(x, shape1 = 2, shape2 = 10), xlim = c(0, 1), col = "Black", lwd = 2, ylab = "Beta Density", xlab = "Y", main = "Shape1 = 2, Shape2 = 10")
+
+xcurve = seq(0, 0.5, length = 1000)
+ycurve = dbeta(xcurve, shape1 = 2, shape2 = 10)
+polygon(c(0, xcurve, 0.5), c(0, ycurve, 0), col = "Cornsilk")
+
+prob = pbeta(0.5, shape1 = 2, shape2 = 10) - pbeta(0, shape1 = 2, shape2 = 10)
+prob = round(prob, 4)
+text(x = 0.15, y = 1.5, paste("Area3 = ", prob, sep = ""))
+```
+
+# Task 7
+
+```{r}
+library(statspackage)
+devtools::document()
+statspackage::myncurve(10, 5, 6)
+```
+
